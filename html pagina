@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEALTH-IA</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<!--Parte para se cadastrar-->
+<body>
+
+    <!--Principais botões-->
+    <div class="fundo_btn">
+        <button class="btn branco" id="btn_login">Login</button>
+        <button class="btn branco" id="btn_contato">Fale Conosco</button>
+    </div>
+    <!--Parte fale conosco-->
+    <div class="div_contato ocultar" id="div_contato">
+        <h1>Fale conosco</h1>
+        <!--preenchimento fale conosco-->
+        <div id="div_formulario" class="div_formulario">
+            <!--Parte nome-->
+            <label for="input_nome">Nome:</label>
+            <input id="input_nome" class="input_formulario" type="text" placeholder="Digite seu nome completo">
+            <br><br>
+            <!--Parte email-->
+            <label for="input_email">Email:</label>
+            <input id="input_email" class="input_formulario" type="email" placeholder="Insira seu email">
+            <br><br>
+            <!--Parte assunto-->
+            <label for="input_instituicao">Assunto:</label>
+            <input id="input_instituicao" class="input_formulario" type="text">
+            <br><br>
+            <!--Parte mensagem-->
+            <label for="input_msg">Mensagem:</label>
+            <input id="input_msg" class="input_formulario" type="text">
+            <br><br>
+        </div>
+    </div>
+
+    <!-- ===== Login ===== -->
+    <div class="div_login ocultar" id="div_login">
+        <div id="login_fields">
+            <h1>Login</h1>
+            <label for="input_CPF">CPF</label>
+            <input id="input_CPF" type="text" placeholder="Digite seu CPF">
+            <br><br>
+
+            <label for="input_senha">Senha</label>
+            <input id="input_senha" type="password" placeholder="Digite sua senha">
+            <br><br>
+
+            <button id="btn_cadastrar" class="btn2">Cadastrar</button>
+            <button id="btn_entrar" class="btn2">Entrar</button>
+        </div>
+            
+        <div class="div_cadastrar ocultar" id="div_cadastrar">
+            <h1>Cadastrar</h1>
+            <br>
+            <label for="input_nome">Nome completo</label>
+            <input id="input_nome" type="text">
+            <br><br>
+
+            <label for="input_CPF_cadastro">CPF</label>
+            <input id="input_CPF_cadastro" type="text">
+            <br><br>
+
+            <label for="input_senha_cadastro">Senha</label>
+            <input id="input_senha_cadastro" type="password">
+            <br><br>
+
+            <label for="input_email">Email</label>
+            <input id="input_email" type="email">
+            <br><br>
+
+            <button id="btn_salvar_cadastro" class="btn2">Salvar</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    // para os botões sumirem/desaparecer login e fale conosco
+    document.getElementById("btn_login").addEventListener("click", () => {
+        document.getElementById("div_login").classList.toggle("ocultar");
+        document.getElementById("div_contato").classList.add("ocultar");
+    }); 
+
+    document.getElementById("btn_contato").addEventListener("click", () => {
+        document.getElementById("div_login").classList.add("ocultar");
+        document.getElementById("div_contato").classList.toggle("ocultar");
+    }); 
+    const loginFields = document.getElementById("login_fields");
+    const divCadastro = document.getElementById("div_cadastrar");
+
+    document.getElementById("btn_cadastrar").addEventListener("click", () => {
+        divCadastro.classList.remove("ocultar");
+        loginFields.style.display = "none";
+    });
+
+    document.getElementById("btn_salvar_cadastro").addEventListener("click", () => {
+        alert("Cadastro salvo! Faça o login agora.");
+        divCadastro.classList.add("ocultar");
+        loginFields.style.display = "block";
+    });
+    
+    // validar se os usuario esta correto para fazer login
+    document.getElementById("btn_entrar").addEventListener("click", () => {
+        const cpfInput = document.getElementById("input_CPF").value;
+        const senhaInput = document.getElementById("input_senha").value;
+        const cpfCadastrado = document.getElementById("input_CPF_cadastro").value;
+        const senhaCadastrada = document.getElementById("input_senha_cadastro").value;
+
+        if (cpfInput === cpfCadastrado && senhaInput === senhaCadastrada && cpfInput !== "" && senhaInput !== "") {
+            alert("Conectado!");
+            document.getElementById("btn_trabalhe").style.display = "inline-block";
+            document.getElementById("div_login").classList.add("ocultar");
+        } else {
+            alert("CPF ou senha incorretos!");
+        }
+    });
+
+    // back+banco de dados
+    
+</script>
+</html>
